@@ -229,14 +229,12 @@ header.scrolled::after {
 }
 
 .logo-mark {
-    height: 32px;
-    width: auto;
-    display: block;
+    display: none;
 }
 
 /* Bigger logo in header */
 .nav-container .logo-mark {
-    height: 64px;
+    height: 0;
 }
 
 @media (max-width: 768px) {
@@ -710,9 +708,9 @@ header.scrolled::after {
 }
 
 .btn-outline {
-    background: transparent;
+    background: white;
     color: var(--primary-blue);
-    border: 2px solid var(--primary-blue);
+    border: 2px solid white;
     position: relative;
 }
 
@@ -720,16 +718,16 @@ header.scrolled::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--primary-gradient);
+    background: var(--primary-blue);
+    border-radius: var(--radius-full);
     opacity: 0;
     transition: var(--transition);
     z-index: -1;
-    border-radius: var(--radius-full);
 }
 
 .btn-outline:hover {
-    color: var(--white);
-    border-color: transparent;
+    color: white;
+    border-color: var(--primary-blue);
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
 }
@@ -1087,6 +1085,21 @@ header.scrolled::after {
 .section {
     padding: var(--section-spacing) 0;
     position: relative;
+    isolation: isolate;
+}
+
+/* Soft section divider soหน้าไม่โล่งเกินไป */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1200px, 100%);
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.25), transparent);
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 .section-header {
@@ -1148,6 +1161,8 @@ header.scrolled::after {
    =================================================== */
 .about {
     background: var(--bg-light);
+    position: relative;
+    overflow: hidden;
 }
 
 .about-content {
@@ -3167,18 +3182,12 @@ html {
     }
 }
 
-@media (max-width: 480px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* ===================================================
-   TESTIMONIALS SECTION
+   TESTIMONIALS SECTION - Soft cards on subtle background
    =================================================== */
 .testimonials-section {
     padding: var(--section-spacing) 0;
-    background: var(--bg-light);
+    background: radial-gradient(circle at top, rgba(37, 99, 235, 0.06) 0, #F8FAFC 55%);
     position: relative;
 }
 
@@ -3307,7 +3316,7 @@ html {
     text-align: center;
     padding: 2.5rem 1.5rem;
     border-radius: var(--radius-xl);
-    background: var(--bg-light);
+    background: rgba(248, 250, 252, 0.9);
     transition: var(--transition);
     position: relative;
     overflow: hidden;

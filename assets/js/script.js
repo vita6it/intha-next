@@ -15,6 +15,7 @@ if (window.inthaNextInitialized) {
             initRevealAnimations();
             initSmoothScrolling();
             initHeaderEffects();
+            initStatsCounter();
             initMobileMenu();
             initMemberCards();
             initInteractiveEffects();
@@ -246,6 +247,59 @@ function initActiveNavigation() {
             });
         }
     }
+}
+
+// ===================================================
+// STATS COUNTER ANIMATION
+// ===================================================
+function initStatsCounter() {
+    const statElements = document.querySelectorAll('.stat-value[data-value]');
+    if (!statElements.length) return;
+
+    const animateStat = (el) => {
+        const targetValue = parseInt(el.getAttribute('data-value'), 10);
+        if (isNaN(targetValue) || targetValue <= 0) return;
+
+        const originalText = (el.textContent || '').trim();
+        const prefixMatch = originalText.match(/^\D*/);
+        const suffixMatch = originalText.match(/\D*$/);
+        const prefix = prefixMatch ? prefixMatch[0] : '';
+        const suffix = suffixMatch ? suffixMatch[0] : '';
+
+        let startTimestamp = null;
+        const duration = 1500; // ms
+
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const currentValue = Math.floor(progress * targetValue);
+
+            el.textContent = `${prefix}${currentValue.toLocaleString('th-TH')}${suffix}`;
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+
+        window.requestAnimationFrame(step);
+    };
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -30% 0px',
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStat(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    statElements.forEach(el => observer.observe(el));
 }
 
 // ===================================================

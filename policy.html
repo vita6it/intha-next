@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563EB">
+    <title>นโยบายทั้งหมด | Intha - NEXT</title>
+    <meta name="description" content="ดูนโยบายทั้งหมดของพรรค Intha - NEXT และเพิ่มนโยบายใหม่">
+    <meta name="keywords" content="Intha NEXT, นโยบาย, พรรคนักเรียน, โรงเรียน">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563EB'/%3E%3Cstop offset='1' stop-color='%231E3A8A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' text-anchor='middle' fill='white' font-family='Inter,Arial,sans-serif' font-size='26'%3EN%3C/text%3E%3C/svg%3E">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Additional styles for policy page */
+        .policy-page-header {
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+        
+        .policy-page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        
+        .policy-page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+        
+        .policy-main-content {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+        
+                
+        .policy-list-container {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .policy-item {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-blue);
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .policy-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+            border-left-width: 6px;
+        }
+        
+        .policy-item-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .policy-item-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+            color: white;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .policy-item-title {
+            flex: 1;
+        }
+        
+        .policy-item-title h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #1e293b;
+        }
+        
+        .policy-item-title .policy-number {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        .policy-item-content {
+            color: #475569;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .policy-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .policy-item-tag {
+            background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .policy-item-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+            background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%);
+        }
+        
+        .policy-item-tag i {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        /* Category Sections */
+        .policy-category-section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .policy-category-section:nth-child(1) { animation-delay: 0.1s; }
+        .policy-category-section:nth-child(2) { animation-delay: 0.2s; }
+        .policy-category-section:nth-child(3) { animation-delay: 0.3s; }
+        .policy-category-section:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-cyan));
+            animation: slideInLine 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes slideInLine {
+            to { width: 100px; }
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .category-title i {
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+        }
+        
+        .category-count {
+            background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+        }
+        
+        .policy-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #64748b;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+            color: #94a3b8;
+        }
+        
+        .empty-state h3 {
+            color: #475569;
+        }
+        
+        @media (max-width: 768px) {
+            .policy-page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .add-policy-section,
+            .policy-list-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Intha - NEXT Logo" class="logo-mark" loading="lazy">
+                <span class="logo-text">Intha <span>- NEXT</span></span>
+            </a>
+            <nav class="nav-desktop">
+                <ul class="nav-links">
+                    <li><a href="index.html#home">หน้าแรก</a></li>
+                    <li><a href="index.html#about">วิสัยทัศน์</a></li>
+                    <li><a href="policy.html" class="active">นโยบาย</a></li>
+                    <li><a href="members.html">สมาชิกพรรค</a></li>
+                    <li><a href="index.html#contact">ติดต่อเรา</a></li>
+                </ul>
+            </nav>
+
+            <!-- Toggle Tab Menu Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html#home" class="mobile-link">หน้าแรก</a></li>
+                    <li><a href="index.html#about" class="mobile-link">วิสัยทัศน์</a></li>
+                    <li><a href="policy.html" class="mobile-link">นโยบาย</a></li>
+                    <li><a href="members.html" class="mobile-link">สมาชิกพรรค</a></li>
+                    <li><a href="index.html#contact" class="mobile-link">ติดต่อเรา</a></li>
+                </ul>
+                <a href="index.html#policies" class="btn btn-primary mobile-cta">เลือกเบอร์ 1</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Backdrop -->
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+    <!-- Policy Page Header -->
+    <section class="policy-page-header">
+        <div class="container">
+            <h1>นโยบายทั้งหมด</h1>
+            <p>ดูนโยบายทั้งหมดของพรรค Intha - NEXT</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="policy-main-content">
+        <div class="container">
+            
+            <!-- Policy List Section -->
+            <section class="policy-list-container">
+                <h2 style="margin-bottom: 2rem; color: var(--text-dark);">
+                    <i class="fa-solid fa-list" style="color: var(--primary-blue);"></i>
+                    รายการนโยบายทั้งหมด
+                </h2>
+                
+                <div id="policyList">
+                    <!-- Policies will be dynamically added here -->
+                    <div class="empty-state">
+                        <i class="fa-solid fa-inbox"></i>
+                        <h3>ยังไม่มีนโยบาย</h3>
+                        <p>เพิ่มนโยบายแรกของคุณโดยใช้ฟอร์มด้านบน</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo">
+                        <span>Intha - NEXT</span>
+                    </a>
+                    <p class="footer-desc">
+                        พรรคของนักเรียนยุคใหม่ มุ่งมั่นพัฒนาโรงเรียนด้วยพลังสร้างสรรค์และความตั้งใจจริง
+                    </p>
+                </div>
+                <div class="footer-contact">
+                    <h4>ติดต่อเรา</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/intha_next/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@intha.next" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Intha - NEXT Party. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Policy Management System
+        class PolicyManager {
+            constructor() {
+                this.policies = this.loadPolicies();
+                this.init();
+            }
+
+            init() {
+                this.renderPolicies();
+            }
+
+            // Load policies from localStorage
+            loadPolicies() {
+                const saved = localStorage.getItem('inthanext_policies');
+                return saved ? JSON.parse(saved) : this.getDefaultPolicies();
+            }
+
+            // Get default policies from main page
+            getDefaultPolicies() {
+                return [];
+            }
+
+            // Save policies to localStorage
+            savePolicies() {
+                localStorage.setItem('inthanext_policies', JSON.stringify(this.policies));
+            }
+
+            // AddPolicy function - main function for adding policies
+            AddPolicy(title, description, icon, tags = []) {
+                const newPolicy = {
+                    id: Date.now(),
+                    title: title,
+                    description: description,
+                    icon: icon,
+                    tags: tags,
+                    number: String(this.policies.length + 1).padStart(2, '0')
+                };
+
+                this.policies.push(newPolicy);
+                this.savePolicies();
+                this.renderPolicies();
+                
+                return newPolicy;
+            }
+
+            // Render policies
+            renderPolicies() {
+                const policyList = document.getElementById('policyList');
+                
+                if (this.policies.length === 0) {
+                    policyList.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-inbox"></i>
+                            <h3>ยังไม่มีนโยบาย</h3>
+                            <p>ใช้ฟังก์ชัน AddPolicy() เพื่อเพิ่มนโยบายแรก</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Group policies by category
+                const categories = {
+                    'ด้านความดี': [],
+                    'ด้านความรู้': [],
+                    'ด้านความสุข': [],
+                    'นโยบายอื่น ๆ': []
+                };
+
+                this.policies.forEach(policy => {
+                    if (policy.tags && policy.tags.includes('ด้านความดี')) {
+                        categories['ด้านความดี'].push(policy);
+                    } else if (policy.tags && policy.tags.includes('ด้านความรู้')) {
+                        categories['ด้านความรู้'].push(policy);
+                    } else if (policy.tags && policy.tags.includes('ด้านความสุข')) {
+                        categories['ด้านความสุข'].push(policy);
+                    } else {
+                        categories['นโยบายอื่น ๆ'].push(policy);
+                    }
+                });
+
+                let html = '';
+                
+                // Render each category section
+                Object.entries(categories).forEach(([category, policies]) => {
+                    if (policies.length > 0) {
+                        html += `
+                            <div class="policy-category-section">
+                                <div class="category-header">
+                                    <h3 class="category-title">
+                                        <i class="fa-solid ${this.getCategoryIcon(category)}"></i>
+                                        ${category}
+                                    </h3>
+                                    <div class="category-count">${policies.length} นโยบาย</div>
+                                </div>
+                                <div class="policy-grid">
+                                    ${policies.map(policy => this.renderPolicyCard(policy)).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+
+                policyList.innerHTML = html;
+            }
+
+            // Get category icon
+            getCategoryIcon(category) {
+                const icons = {
+                    'ด้านความดี': 'fa-heart',
+                    'ด้านความรู้': 'fa-book',
+                    'ด้านความสุข': 'fa-music',
+                    'นโยบายอื่น ๆ': 'fa-cog'
+                };
+                return icons[category] || 'fa-star';
+            }
+
+            // Render individual policy card
+            renderPolicyCard(policy) {
+                return `
+                    <div class="policy-item" data-policy-id="${policy.id}">
+                        <div class="policy-item-header">
+                            <div class="policy-item-icon">
+                                <i class="fa-solid ${policy.icon}"></i>
+                            </div>
+                            <div class="policy-item-title">
+                                <h3>${policy.title}</h3>
+                            </div>
+                        </div>
+                        <div class="policy-item-content">
+                            ${policy.description}
+                        </div>
+                        <div class="policy-item-tags">
+                            ${policy.tags.map(tag => `<span class="policy-item-tag"><i class="fa-solid fa-tag"></i> ${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize Policy Manager
+        const policyManager = new PolicyManager();
+
+        // Make AddPolicy function globally accessible
+        window.AddPolicy = function(title, description, icon, tags = []) {
+            return policyManager.AddPolicy(title, description, icon, tags);
+        };
+
+        // Add all new policies
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear any existing policies to prevent duplicates
+            localStorage.removeItem('inthanext_policies');
+            policyManager.policies = [];
+            
+            // ด้านความดี
+            AddPolicy("ภารกิจพิชิตคะแนน", "ทำจิตอาสาต่าง ๆ ทั้งในโรงเรียนและนอกโรงเรียน เช่น ทำความสะอาดห้องเรียน, เก็บขยะ, ช่วยครูถือของ ฯลฯ นักเรียนที่ต้องการเพิ่มคะแนนความประพฤติสามารถอัพโหลดรูปภาพที่ทำจิตอาสาของตนเองลงใน App Dschool ของโรงเรียนได้เลย!", "fa-trophy", ["จิตอาสา", "คะแนน", "ด้านความดี"]);
+            
+            // ด้านความรู้
+            AddPolicy("สนามล่าฝัน", "จะสร้างเพจเด็ก ศสว. มีความรู้ มีการโพสต์เกร็ดความรู้ ชีทสรุป ประกาศการสอบแข่งขันวิชาการเช่น สอวน สวช และแจ้งกิจกรรมนอกโรงเรียนต่าง ๆ ทั้งกีฬา ภาษา หรืออื่น ๆ เพื่อกระจายข่าวให้เด็กในโรงเรียนมากขึ้น", "fa-rocket", ["ความรู้", "ข่าวสาร", "ด้านความรู้"]);
+            
+            AddPolicy("ปล่อยของลองวิชา", "ในวันที่มีกิจกรรมสำคัญของแต่ละรายวิชา เช่น วันภาษาไทย วันวิทย์ศาสตร์ วันทานาบาตะ ฯลฯ เราจะมีกิจกรรมให้นักเรียนแข่งขันสรุปเนื้อหารายวิชาที่ตนเองกำลังเรียนอยู่แบ่งเป็นชั้นปี โดยเน้นความสวยงามและเนื้อหาที่ครบถ้วน ผู้ชนะจะได้รับเกียรติบัตรและของรางวัลเล็ก ๆ น้อย ๆ พร้อมทั้งได้นำสรุปนี้ไปเผยแพร่เพื่อเป็นประโยชน์ให้แก่ผู้อื่นในอนาคตได้อีกด้วย", "fa-book-open", ["การศึกษา", "การแข่งขัน", "ด้านความรู้"]);
+            
+            // ด้านความสุข
+            AddPolicy("Open Stage", "จัดกิจกรรมผ่อนคลายให้นักเรียน 1 ครั้งต่อ 1 ภาคเรียนเพื่อให้นักเรียนได้โชว์ศักยภาพของตนเองออกมาอย่างเต็มที่ทั้งด้านเกม เต้น ร้องเพลง ดนตรี และอื่น ๆ เพื่อสนับสนุนให้นักเรียนกล้าแสดงออกอย่างเต็มที่", "fa-microphone-lines", ["ความสามารถพิเศษ", "การแสดงออก", "ด้านความสุข"]);
+            
+            // นโยบายอื่น ๆ
+            AddPolicy("Wrap It Up ห่อจบในงบ 0 บาท", "พวกเราจะรวบรวมกระดาษที่ใช้แล้วจากนักเรียนและคณะครูมาใช้ห่อผ้าอนามัย โดยจะมีกระดาษห่อผ้าอนามัยที่ห้องน้ำหญิงกลางโรงเรียนและห้องน้ำหญิงทุกอาคาร", "fa-recycle", ["สิ่งแวดล้อม", "การลดขยะ", "ประหยัด"]);
+            
+            AddPolicy("เรื่องนี้ต้องถึงสภา!", "เราจะมี QR code กรอกร้องเรียนทุกข์หรือปัญหาต่าง ๆ ในโรงเรียนเพื่อที่สภาจะนำไปปรับปรุงและพัฒนา", "fa-lightbulb", ["เทคโนโลยี", "การสื่อสาร", "การพัฒนา"]);
+            
+            AddPolicy("ตื่นมา Say", "เสริมสร้างการใช้ภาษาที่สองและสามในตอนเช้า", "fa-language", ["ภาษา", "การเรียนรู้", "การสื่อสาร"]);
+            
+            AddPolicy("จุดช่วยทิ้ง", "มีถุงขยะเพิ่มบริเวณที่ไม่มีถังขยะ เพื่อลดการทิ้งขยะที่ไม่ถูกที่", "fa-trash-can", ["สิ่งแวดล้อม", "ความสะอาด", "สิ่งอำนวยความสะดวก"]);
+            
+            AddPolicy("ห้องน้ำที่ไม่ต้องกลั้นหายใจ", "ดับกลิ่นไม่พึงประสงค์ของห้องน้ำตามอาคาร", "fa-spray-can-sparkles", ["สุขอนามัย", "ความสะอาด", "สิ่งอำนวยความสะดวก"]);
+        });
+        </script>
+</body>
+
+</html>
