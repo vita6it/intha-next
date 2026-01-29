@@ -59,7 +59,9 @@
 }
 
 /* --- Reset & Base --- */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -67,17 +69,30 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip; /* prevent horizontal scroll from overflowing children */
 }
 
 body {
     font-family: 'Inter', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--text-dark);
     line-height: 1.7;
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip; /* modern alternative to hidden */
     background-color: var(--white);
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fallback for browsers that don't support overflow: clip */
+@supports not (overflow: clip) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
 }
 
 /* Page Loading State */
@@ -103,6 +118,14 @@ ul {
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* Avoid media elements causing overflow on small screens */
+svg,
+video,
+canvas,
+iframe {
+    max-width: 100%;
 }
 
 /* --- Typography --- */
@@ -469,6 +492,7 @@ header.scrolled::after {
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
     padding-top: 100px;
+    border-radius: 16px 0 0 16px;
 }
 
 .mobile-menu.active {
@@ -1068,6 +1092,7 @@ header.scrolled::after {
 .section-header {
     text-align: center;
     margin-bottom: 3.5rem;
+    overflow-x: clip; /* contains decorative pseudo-elements on small screens */
 }
 
 .section-label {
@@ -1083,6 +1108,7 @@ header.scrolled::after {
     background: rgba(37, 99, 235, 0.08);
     border-radius: 50px;
     animation: fadeInDown 0.6s ease forwards;
+    max-width: 100%;
 }
 
 /* Animated side lines */

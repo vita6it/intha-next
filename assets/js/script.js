@@ -306,6 +306,63 @@ function initMobileMenu() {
             closeMenu();
         }
     }, 150));
+
+    // ---------------------------------------------------
+    // Touch swipe gestures (mobile) - slide tab in/out
+    // ---------------------------------------------------
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+    const SWIPE_THRESHOLD = 60; // min horizontal distance (px)
+    const VERTICAL_TOLERANCE = 40; // ignore mostly-vertical swipes
+
+    const onTouchStart = (e) => {
+        if (window.innerWidth > 1024 || !e.touches || e.touches.length === 0) return;
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchEndX = touchStartX;
+        touchEndY = touchStartY;
+    };
+
+    const onTouchMove = (e) => {
+        if (window.innerWidth > 1024 || !e.touches || e.touches.length === 0) return;
+        const touch = e.touches[0];
+        touchEndX = touch.clientX;
+        touchEndY = touch.clientY;
+    };
+
+    const onTouchEnd = () => {
+        if (window.innerWidth > 1024) return;
+
+        const deltaX = touchStartX - touchEndX;
+        const deltaY = Math.abs(touchEndY - touchStartY);
+
+        // ignore if mostly vertical movement
+        if (deltaY > VERTICAL_TOLERANCE) return;
+
+        const menuIsOpen = mobileMenu.classList.contains('active');
+
+        // Swipe from right edge to left to OPEN menu
+        if (!menuIsOpen) {
+            const startedNearRightEdge = touchStartX > window.innerWidth * 0.7;
+            if (startedNearRightEdge && deltaX > SWIPE_THRESHOLD) {
+                openMenu();
+            }
+            return;
+        }
+
+        // Swipe from left to right to CLOSE menu
+        if (menuIsOpen && deltaX < -SWIPE_THRESHOLD) {
+            closeMenu();
+        }
+    };
+
+    // Attach swipe listeners (passive so we don't block scroll)
+    document.addEventListener('touchstart', onTouchStart, { passive: true });
+    document.addEventListener('touchmove', onTouchMove, { passive: true });
+    document.addEventListener('touchend', onTouchEnd);
 }
 
 // ===================================================
