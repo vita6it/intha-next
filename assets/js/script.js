@@ -22,6 +22,7 @@ if (window.inthaNextInitialized) {
             initScrollIndicator();
             initActiveNavigation();
             initImageLoading();
+            initInfiniteCarousel(); // Add infinite carousel logic
 
             // Mark body as loaded for CSS animations
             document.body.classList.remove('page-loading');
@@ -925,3 +926,28 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 window.addEventListener('unhandledrejection', function (event) {
     console.error('Intha-NEXT Unhandled Promise Rejection:', event.reason);
 });
+
+// ===================================================
+// INFINITE CAROUSEL
+// ===================================================
+function initInfiniteCarousel() {
+    const carousel = document.getElementById('members-carousel');
+    if (!carousel) return;
+
+    // Clone items for seamless loop
+    const items = Array.from(carousel.children);
+
+    // Check if we have enough items to scroll (at least a few)
+    if (items.length === 0) return;
+
+    // Clone items to ensure we have enough width for seamless scrolling
+    // We clone the entire set once to create the seamless loop effect
+    // corresponding with the translateX(-50%) animation
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true'); // Accessibility
+        carousel.appendChild(clone);
+    });
+
+    // Pause on hover is handled in CSS
+}

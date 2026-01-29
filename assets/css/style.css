@@ -71,7 +71,8 @@ html {
     scroll-behavior: smooth;
     width: 100%;
     max-width: 100%;
-    overflow-x: clip; /* prevent horizontal scroll from overflowing children */
+    overflow-x: clip;
+    /* prevent horizontal scroll from overflowing children */
 }
 
 body {
@@ -80,7 +81,8 @@ body {
     line-height: 1.7;
     width: 100%;
     max-width: 100%;
-    overflow-x: clip; /* modern alternative to hidden */
+    overflow-x: clip;
+    /* modern alternative to hidden */
     background-color: var(--white);
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -89,6 +91,7 @@ body {
 
 /* Fallback for browsers that don't support overflow: clip */
 @supports not (overflow: clip) {
+
     html,
     body {
         overflow-x: hidden;
@@ -1105,7 +1108,8 @@ header.scrolled::after {
 .section-header {
     text-align: center;
     margin-bottom: 3.5rem;
-    overflow-x: clip; /* contains decorative pseudo-elements on small screens */
+    overflow-x: clip;
+    /* contains decorative pseudo-elements on small screens */
 }
 
 .section-label {
@@ -1621,9 +1625,8 @@ header.scrolled::after {
     height: 220px;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     position: relative;
-    border: 3px solid var(--primary-blue);
 }
 
 .leader-img img {
@@ -4013,7 +4016,7 @@ html {
 .members-carousel {
     display: flex;
     gap: 1.5rem;
-    animation: scrollCarousel 30s linear infinite;
+    animation: scrollCarousel 50s linear infinite;
     width: max-content;
     cursor: grab;
 }
@@ -4136,5 +4139,24 @@ html {
     .carousel-card {
         width: 140px;
         height: 190px;
+    }
+}/* ===================================================
+   HERO CUTE DRAWING RESPONSIVENESS
+   =================================================== */
+.hero-cute-drawing {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    height: 250px;
+    width: auto;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+    background: none;
+}
+
+@media (max-width: 768px) {
+    .hero-cute-drawing {
+        height: 150px;
     }
 }
