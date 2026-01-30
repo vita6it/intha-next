@@ -1591,15 +1591,30 @@ header.scrolled::after {
 .leader-card {
     display: flex;
     align-items: center;
-    background: var(--white);
+    background: linear-gradient(to right, #ffffff, #f8fafc);
     border-radius: var(--radius-xl);
-    padding: 2.5rem 3rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(37, 99, 235, 0.1);
-    gap: 2.5rem;
+    padding: 3rem;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(37, 99, 235, 0.1);
+    gap: 3rem;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+
+/* Decorative background graphic for leader */
+.leader-card::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
 }
 
 /* Subtle accent line on left side */
@@ -1608,10 +1623,10 @@ header.scrolled::after {
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
+    width: 6px;
     height: 100%;
-    background: var(--primary-blue);
-    border-radius: 0 4px 4px 0;
+    background: linear-gradient(to bottom, var(--primary-blue), var(--accent-cyan));
+    box-shadow: 2px 0 15px rgba(37, 99, 235, 0.4);
 }
 
 .leader-card:hover {
@@ -1641,33 +1656,52 @@ header.scrolled::after {
 }
 
 .leader-info h3 {
-    font-size: 1.6rem;
-    color: var(--text-dark);
-    margin: 0.6rem 0;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 1rem 0;
+    background: linear-gradient(90deg, var(--text-dark) 0%, var(--primary-blue) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
 }
 
 /* Clean Role Badge */
 .role-badge {
-    display: inline-block;
-    background: var(--primary-blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
     color: var(--white);
-    padding: 0.5rem 1.2rem;
+    padding: 0.6rem 1.4rem;
     border-radius: var(--radius-full);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.role-badge::before {
+    content: '\f521';
+    /* Crown icon code from FontAwesome */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: #FFD700;
+    /* Gold color for the crown */
 }
 
 .quote {
+    position: relative;
     font-style: italic;
-    font-size: 1rem;
-    color: var(--text-light);
-    margin: 1rem 0;
-    padding-left: 1rem;
-    border-left: 3px solid rgba(37, 99, 235, 0.3);
-    line-height: 1.7;
+    font-size: 1.05rem;
+    color: var(--text-medium);
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(to right, rgba(37, 99, 235, 0.05), rgba(255, 255, 255, 0));
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    line-height: 1.8;
 }
 
 .leader-social {

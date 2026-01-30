@@ -498,93 +498,228 @@ function initInteractiveEffects() {
 // MEMBER CARDS FUNCTIONALITY
 // ===================================================
 
-// Initial Member Data (Core Team - Always Visible)
 const coreMembers = [
     {
-        name: "น.ส. ฟ้าใส ใจดี",
-        role: "รองประธานฝ่ายวิชาการ",
-        description: "มุ่งมั่นพัฒนาคุณภาพการเรียนการสอนและสนับสนุนกิจกรรมวิชาการ",
-        img: "assets/images/member_vp_girl.png",
-        instagram: "@faisai.academic",
-        tags: ["ม.5", "วิชาการ", "เกียรตินิยม"]
+        name: "นางสาวกมลทิพย์ คำเมือง",
+        nickname: "บ๋อมแบ๋ม",
+        img: "",
+        instagram: "faisai.academic",
+        tags: ["รองประธานคนที่ 1", "4/13"]
     },
     {
-        name: "นาย ตะวัน ยิ้มแย้ม",
-        role: "หัวหน้าฝ่ายกิจกรรม",
-        description: "สร้างสรรค์กิจกรรมสนุก ๆ และพัฒนาชมรมต่าง ๆ ให้น่าสนใจ",
-        img: "assets/images/member_vp_boy.png",
-        instagram: "@tawan.activity",
-        tags: ["ม.5", "กิจกรรม", "ดนตรี"]
+        name: "นายภาณุพงศ์ นาใจคง",
+        nickname: "ปลื้ม",
+
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_5740.PNG",
+        instagram: "pn_pg09",
+        tags: ["รองประธานคนที่ 2", "4/5"]
     },
     {
-        name: "นาย ภูผา แข็งแกร่ง",
-        role: "เหรัญญิก",
-        description: "จัดการงบประมาณอย่างโปร่งใสและมีประสิทธิภาพ",
-        img: "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@phupha.finance",
-        tags: ["ม.4", "การเงิน", "บัญชี"]
+        name: "นางสาวขวัญชนก ธัญญะประกอบ",
+        nickname: "อิ้งค์",
+        img: "assets/images/SSW_IMAGE/carousel-card/Screenshot_20260130_101313_Gallery.jpg",
+        instagram: "phupha.finance",
+        tags: ["รองประธานคนที่ 3", "4/13"]
     },
     {
-        name: "น.ส. ดาว ประดับ",
-        role: "เลขานุการ",
-        description: "บันทึกและประสานงานทุกกิจกรรมอย่างเป็นระบบ",
-        img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@dao.secretary",
-        tags: ["ม.5", "ประสานงาน", "เอกสาร"]
-    }
+        name: "นางสาวปวริศา บุตเพ็ง",
+        nickname: "ซีน",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_2254.JPG",
+        instagram: "dao.secretary",
+        tags: ["รองประธานคนที่ 4", "4/13"]
+    },
+    {
+        name: "นางสาวกัญญาณัท ภาวะโน",
+        nickname: "แก้ว",
+
+        img: "assets/images/SSW_IMAGE/carousel-card/cute1.PNG",
+        instagram: "kxny4i",
+        tags: ["คณะกรรมการ", "4/1", "น่ารักที่สุด"]
+    },
+    {
+        name: "นางสาวธงศิริยา รัตนวิชา",
+        nickname: "อุ๋งอิ๋ง",
+
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_1249.JPG",
+        instagram: "ab00utug",
+        tags: ["คณะกรรมการ", "4/14"]
+    },
+    {
+        name: "นางสาววลัยพรรณ จันทร์คำ",
+        nickname: "มิ้น",
+
+        img: "assets/images/SSW_IMAGE/carousel-card/DSC09776_Original.JPG",
+        instagram: "meowmin_.t",
+        tags: ["คณะกรรมการ", "4/13"]
+    },
+    {
+        name: "นางสาวกัญญ์ณณัฐ ภาวะโน",
+        nickname: "แก้ม",
+
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_4293.JPG",
+        instagram: "kann4.ii",
+        tags: ["คณะกรรมการ", "4/1"]
+    },
+    {
+        name: "นางสาวปรียดา พารี",
+        nickname: "โอปอ",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_0048.JPG",
+        instagram: "_priyada.09",
+        tags: ["คณะกรรมการ", "4/2"]
+    },
+    {
+        name: "นายสิทธิชัย ศรีบัวรินทร์",
+        nickname: "แน็กกี้",
+        img: "assets/images/SSW_IMAGE/carousel-card/5E442E96-FE9D-48BD-B16D-1CF73003752E.png",
+        instagram: "naekkyhahaha",
+        tags: ["คณะกรรมการ", "4/9"]
+    },
+    {
+        name: "นางสาวศุภากร นามวงค์",
+        nickname: "น้ำเหนือ",
+        img: "",
+        instagram: "apriltwentyfourr.r",
+        tags: ["คณะกรรมการ", "4/13"]
+    },
+    {
+        name: "นางสาวอุทุมพร แก้วผาบ",
+        nickname: "ออม",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_20260123_225728.jpg",
+        instagram: "sparks.mppp",
+        tags: ["คณะกรรมการ", "4/9"]
+    },
+
+    {
+        name: "นางสาวทองดี กองศรีเกษ",
+        nickname: "ปูเป้",
+        img: "assets/images/SSW_IMAGE/carousel-card/MEITU_20260122_202651311.jpg",
+        instagram: "_itsoflife27_",
+        tags: ["คณะกรรมการ", "4/3"]
+    },
+
+    {
+        name: "นางสาวภาณิชา สวดสม",
+        nickname: "เฟิร์ส",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_1708.JPG",
+        instagram: "first__ps",
+        tags: ["คณะกรรมการ", "4/5"]
+    },
+
+    {
+        name: "นางสาวกัญญาลักษณ์ สายสุนา",
+        nickname: "มีนา",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_2618.PNG",
+        instagram: "kanyalak._24",
+        tags: ["คณะกรรมการ", "4/2"]
+    },
+
+    {
+        name: "นางสาววรรณ​ภรณ์ ​พิมพ์​สารี​",
+        nickname: "นุ่มนิ่ม",
+        img: "assets/images/SSW_IMAGE/carousel-card/ไม่มีชื่อ 408_20260122162613.png",
+        instagram: "kansirinon",
+        tags: ["คณะกรรมการ", "4/6"]
+    },
+
+    {
+        name: "นางสาวชญานี โยธี",
+        nickname: "แจมมี่",
+        img: "assets/images/SSW_IMAGE/carousel-card/1.jpg",
+        instagram: "jemmy_cn._.03",
+        tags: ["คณะกรรมการ", "4/6"]
+    },
+
+    {
+        name: "นางสาวธัญรัตน์ หาทอน",
+        nickname: "อันดา",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_4199.JPG",
+        instagram: "shabu_nah",
+        tags: ["คณะกรรมการ", "4/2"]
+    },
+
+    {
+        name: "นายชลทรัพย์ เกษทองมา",
+        nickname: "นน",
+        img: "assets/images/SSW_IMAGE/carousel-card/Boy3.jpg",
+        instagram: "chocolate18x",
+        tags: ["คณะกรรมการ", "4/9"]
+    },
+
+    {
+        name: "นายอภิรุจ มณีสวาท",
+        nickname: "แชมป์",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_20260122_160458_545.webp",
+        instagram: "ap.mn_ch.am",
+        tags: ["คณะกรรมการ", "4/15"]
+    },
+
+    {
+        name: "นางสาวณัฐชา พรมวงค์",
+        nickname: "อ๋อมแอ๋ม",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_2536.JPG",
+        instagram: "natcha_09__",
+        tags: ["คณะกรรมการ", "4/2"]
+    },
+
+    {
+        name: "นางสาวธัญรัตน์ ตาคำนิล",
+        nickname: "แพรว",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_0038.JPG",
+        instagram: "21prxew._",
+        tags: ["คณะกรรมการ", "4/2"]
+    },
+
+    {
+        name: "นางสาวพิชญาดา ละคร",
+        nickname: "พิซซ่า",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_5779.JPG",
+        instagram: "phitchayada3._",
+        tags: ["คณะกรรมการ", "4/3"]
+    },
+
+    {
+        name: "นายพลพัฒน์ น้อยอ่อนโพธิ์",
+        nickname: "เตอร์",
+        img: "assets/images/SSW_IMAGE/carousel-card/Boy1.JPG",
+        instagram: "pn8tevil",
+        tags: ["คณะกรรมการ", "4/5"]
+    },
+
+    {
+        name: "นายธนาธิป พลซา",
+        nickname: "เกิ้ล",
+        img: "assets/images/SSW_IMAGE/carousel-card/Boy2.jpg",
+        instagram: "kappkp",
+        tags: ["คณะกรรมการ", "4/15"]
+    },
+
+    {
+        name: "นายกิตติชัย นามทอง",
+        nickname: "โฟม",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_5757.JPG",
+        instagram: "kn19_foam",
+        tags: ["คณะกรรมการ", "4/5"]
+    },
+
+    {
+        name: "นายกิตติภพ จันทร์โยธา",
+        nickname: "ฟีโน่",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_4510.JPG",
+        instagram: "k1tt1p0p",
+        tags: ["คณะกรรมการ", "4/13"]
+    },
+
+    {
+        name: "นางสาวพิชญ์นรี บุตะเขียว",
+        nickname: "เพ้นท์",
+        img: "assets/images/SSW_IMAGE/carousel-card/lv_0_20260123211910.jpg",
+        instagram: "pxin_tx",
+        tags: ["คณะกรรมการ", "4/13"]
+    },
 ];
 
-// Additional Members (Hidden by default)
-const additionalMembers = [
-    {
-        name: "นาย สุริยา แสงจันทร์",
-        role: "ฝ่ายประชาสัมพันธ์",
-        description: "สื่อสารข่าวสารและกิจกรรมให้นักเรียนรับรู้",
-        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@suriya.pr",
-        tags: ["ม.4", "สื่อสาร", "โซเชียล"]
-    },
-    {
-        name: "น.ส. มณี รัตนา",
-        role: "ฝ่ายสวัสดิการ",
-        description: "ดูแลสวัสดิการและความเป็นอยู่ของนักเรียน",
-        img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@manee.welfare",
-        tags: ["ม.5", "สวัสดิการ", "จิตอาสา"]
-    },
-    {
-        name: "นาย ธนา วิริยะ",
-        role: "ฝ่ายกีฬา",
-        description: "จัดการแข่งขันกีฬาและส่งเสริมสุขภาพนักเรียน",
-        img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@thana.sports",
-        tags: ["ม.6", "กีฬา", "ฟุตบอล"]
-    },
-    {
-        name: "น.ส. ปาล์ม สุขใจ",
-        role: "ฝ่ายศิลปวัฒนธรรม",
-        description: "อนุรักษ์และส่งเสริมศิลปะและวัฒนธรรม",
-        img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@palm.culture",
-        tags: ["ม.4", "ศิลปะ", "นาฏศิลป์"]
-    },
-    {
-        name: "นาย ปฐม ก้าวหน้า",
-        role: "ฝ่ายเทคโนโลยี",
-        description: "พัฒนาระบบดิจิทัลและสนับสนุนด้านเทคโนโลยี",
-        img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@pathom.tech",
-        tags: ["ม.5", "IT", "Coding"]
-    },
-    {
-        name: "น.ส. ใบเฟิร์น สดใส",
-        role: "ฝ่ายสิ่งแวดล้อม",
-        description: "รณรงค์และดูแลสิ่งแวดล้อมภายในโรงเรียน",
-        img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop",
-        instagram: "@fern.green",
-        tags: ["ม.4", "สิ่งแวดล้อม", "ECO"]
-    }
-];
+// Additional Members (Empty for now as all displayed in core)
+const additionalMembers = [];
 
 let isShowingAll = false;
 
@@ -611,9 +746,17 @@ window.AddCard = function (infoMembers, isAdditional = false) {
     }
 
     // Default image if none provided
-    const imgSrc = infoMembers.img && infoMembers.img.trim() !== ""
-        ? infoMembers.img
-        : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+    let imgSrc = infoMembers.img || '';
+
+    // Sanitize path
+    imgSrc = imgSrc.trim();
+    if (imgSrc.includes('\\')) {
+        imgSrc = imgSrc.replace(/\\/g, '/');
+    }
+
+    if (!imgSrc) {
+        imgSrc = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+    }
 
     // Default description and instagram
     const description = infoMembers.description || "สมาชิกทีม Intha-NEXT";
@@ -625,6 +768,11 @@ window.AddCard = function (infoMembers, isAdditional = false) {
         ? `<div class="member-tags">${tags.map(tag => `<span class="member-tag">${tag}</span>`).join('')}</div>`
         : '';
 
+    // Nickname formatting
+    const nicknameHTML = infoMembers.nickname
+        ? `<br><span style="display:block; font-size:0.85em; opacity:0.8; font-weight:500; margin-top:4px;">( ${infoMembers.nickname} )</span>`
+        : '';
+
     card.innerHTML = `
         <div class="team-img">
             <img src="${imgSrc}" alt="${infoMembers.name}" 
@@ -632,10 +780,8 @@ window.AddCard = function (infoMembers, isAdditional = false) {
                  loading="lazy">
         </div>
         <div class="team-info">
-            <h4>${infoMembers.name}</h4>
-            <span class="role">${infoMembers.role}</span>
+            <h4>${infoMembers.name}${nicknameHTML}</h4>
             ${tagsHTML}
-            <p class="description">${description}</p>
             <a href="https://instagram.com/${instagram.replace('@', '')}" 
                target="_blank" 
                rel="noopener noreferrer"
@@ -741,8 +887,11 @@ function updateMemberCount() {
 // ===================================================
 // MEMBERS SEARCH PAGE
 // ===================================================
+// ===================================================
+// MEMBERS SEARCH PAGE
+// ===================================================
 function initMembersSearchPage(container, searchInput) {
-    // Clear any existing cards (safety)
+    // Always clear container to sync with JS data
     container.innerHTML = '';
 
     const allMembers = [...coreMembers, ...additionalMembers];
@@ -752,27 +901,28 @@ function initMembersSearchPage(container, searchInput) {
     });
 
     const cards = Array.from(container.querySelectorAll('.team-card'));
+    const resultInfo = document.getElementById('member-search-result');
 
     // Attach searchable text to each card
     cards.forEach((card, index) => {
         const member = allMembers[index];
         const searchText = [
             member.name || '',
-            member.role || '',
+            member.nickname || '',
+            (member.tags || []).join(' '),
             member.description || '',
             member.instagram || ''
         ].join(' ').toLowerCase();
         card.dataset.search = searchText;
     });
 
-    const resultInfo = document.getElementById('member-search-result');
-
     const handleSearch = () => {
         const query = searchInput.value.trim().toLowerCase();
         let visibleCount = 0;
 
         cards.forEach(card => {
-            if (!query || card.dataset.search.includes(query)) {
+            const searchData = (card.dataset.search || card.innerText).toLowerCase();
+            if (!query || searchData.includes(query)) {
                 card.style.display = '';
                 visibleCount++;
             } else {
@@ -921,22 +1071,70 @@ function initInfiniteCarousel() {
     const carousel = document.getElementById('members-carousel');
     if (!carousel) return;
 
+    // Clear existing content to populate from data
+    carousel.innerHTML = '';
+
+    // Combine members
+    const allMembers = [...coreMembers, ...(typeof additionalMembers !== 'undefined' ? additionalMembers : [])];
+
+    if (allMembers.length === 0) return;
+
+    // Populate carousel
+    allMembers.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'carousel-card';
+
+        const img = document.createElement('img');
+        let imgSrc = member.img || '';
+
+        // Sanitize path
+        imgSrc = imgSrc.trim();
+        if (imgSrc.includes('\\')) {
+            imgSrc = imgSrc.replace(/\\/g, '/');
+        }
+
+        // Set Source
+        if (imgSrc) {
+            img.src = imgSrc;
+        } else {
+            img.src = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+        }
+
+        img.alt = member.name || 'Member';
+        // Use eager loading for carousel to ensure images are ready before scrolling starts
+        img.loading = 'eager';
+
+        // Error handling
+        img.onerror = function () {
+            // Prevent infinite loop if fallback fails
+            if (!this.getAttribute('data-error')) {
+                this.setAttribute('data-error', 'true');
+                console.warn('Intha-NEXT: Image load failed for', imgSrc);
+                this.src = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+            }
+        };
+
+        card.appendChild(img);
+        carousel.appendChild(card);
+    });
+
     // Clone items for seamless loop
     const items = Array.from(carousel.children);
 
-    // Check if we have enough items to scroll (at least a few)
     if (items.length === 0) return;
 
     // Clone items to ensure we have enough width for seamless scrolling
     // We clone the entire set once to create the seamless loop effect
-    // corresponding with the translateX(-50%) animation
     items.forEach(item => {
         const clone = item.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true'); // Accessibility
         carousel.appendChild(clone);
     });
 
-    // Pause on hover is handled in CSS
+    // Determine animation duration based on number of items
+    // More items = longer duration to keep speed consistent
+    const duration = items.length * 5; // 5s per item approx
+    carousel.style.animationDuration = `${Math.max(20, duration)}s`;
 }
 
 
