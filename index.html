@@ -88,6 +88,7 @@
     <!-- Custom Style -->
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/hero-slider.css">
 
 </head>
 
@@ -300,8 +301,43 @@
 
             <div class="hero-image reveal">
 
-                <img src="assets\images\SSW_IMAGE\DSC09625.jpg" alt="Intha-NEXT นักเรียนรุ่นใหม่" loading="eager"
-                    onerror="this.src='https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=2000&auto=format&fit=crop'">
+                <div class="hero-slider-container">
+                    <div class="hero-slider-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="hero-slide active">
+                            <img src="assets\images\SSW_IMAGE\DSC09625.jpg" alt="Intha-NEXT นักเรียนรุ่นใหม่"
+                                loading="eager">
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="hero-slide">
+                            <img src="assets\images\SSW_IMAGE\DSC09625.jpg" alt="กิจกรรมพรรค Intha-NEXT" loading="lazy">
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="hero-slide">
+                            <img src="assets\images\SSW_IMAGE\DSC09625.jpg" alt="ทีมงาน Intha-NEXT" loading="lazy">
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="hero-slide">
+                            <img src="assets\images\SSW_IMAGE\DSC09625.jpg" alt="ภาพบรรยากาศ" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button class="slider-btn prev-btn" aria-label="Previous Slide">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-btn" aria-label="Next Slide">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Indicators -->
+                    <div class="slider-dots">
+                        <div class="dot active" data-slide="0"></div>
+                        <div class="dot" data-slide="1"></div>
+                        <div class="dot" data-slide="2"></div>
+                        <div class="dot" data-slide="3"></div>
+                    </div>
+                </div>
 
                 <!-- Floating stats on image -->
 
