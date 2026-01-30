@@ -534,7 +534,7 @@ const coreMembers = [
 
         img: "assets/images/SSW_IMAGE/carousel-card/cute1.PNG",
         instagram: "kxny4i",
-        tags: ["คณะกรรมการ", "4/1", "น่ารักที่สุด"]
+        tags: ["คณะกรรมการ", "4/1"]
     },
     {
         name: "นางสาวธงศิริยา รัตนวิชา",
