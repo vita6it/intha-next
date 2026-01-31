@@ -502,7 +502,7 @@ const coreMembers = [
     {
         name: "นางสาวกมลทิพย์ คำเมือง",
         nickname: "บ๋อมแบ๋ม",
-        img: "",
+        img: "assets/images/SSW_IMAGE/carousel-card/1769183611640.webp",
         instagram: "faisai.academic",
         tags: ["รองประธานคนที่ 1", "4/13"]
     },
@@ -577,7 +577,7 @@ const coreMembers = [
     {
         name: "นางสาวศุภากร นามวงค์",
         nickname: "น้ำเหนือ",
-        img: "",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_5140_1.webp",
         instagram: "apriltwentyfourr.r",
         tags: ["คณะกรรมการ", "4/13"]
     },
@@ -675,6 +675,14 @@ const coreMembers = [
         img: "assets/images/SSW_IMAGE/carousel-card/IMG_5779.JPG",
         instagram: "phitchayada3._",
         tags: ["คณะกรรมการ", "4/3"]
+    },
+
+    {
+        name: "นายเตชิน คำทองทิพย์",
+        nickname: "ไนท์",
+        img: "assets/images/SSW_IMAGE/carousel-card/IMG_4809.JPG",
+        instagram: "night.owo",
+        tags: ["คณะกรรมการ", "4/15"]
     },
 
     {
