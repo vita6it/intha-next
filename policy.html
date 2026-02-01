@@ -194,19 +194,31 @@
         class PolicyManager {
             constructor() {
                 this.policies = [];
-                this.init();
+                try {
+                    this.init();
+                } catch (error) {
+                    console.error("PolicyManager Error:", error);
+                }
             }
 
             init() {
-                // Initialize default policies
+                // Initialize formatted policies with categories
                 this.addDefaultPolicies();
                 this.renderPolicies();
+
+                // Safety check: Ensure page is visible even if main script failed
+                setTimeout(() => {
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    document.body.style.opacity = '1';
+                }, 500);
             }
 
             // Function to add a policy
-            addPolicy(title, description, icon, tags = [], number = "00") {
+            addPolicy(category, title, description, icon, tags = [], number = "00") {
                 this.policies.push({
                     id: Date.now() + Math.random(),
+                    category,
                     title,
                     description,
                     icon,
@@ -216,18 +228,25 @@
             }
 
             addDefaultPolicies() {
-                this.addPolicy("เหนือกว่านิยาม", "เราไม่ได้มองหาแค่คนที่หน้าตาดี แต่เรามองหา \"ความสมบูรณ์แบบที่แตกต่าง\" ดังนั้นจึงมีการประกวดดาว LGBTQ+ เพื่อให้ทุกคนก้าวข้ามขีดจำกัดของตัวเองและโชว์ความเป็นตัวเองอย่างเต็มที่", "fa-star", ["LGBTQ+", "ความเท่าเทียม"], "12");
-                this.addPolicy("ภารกิจพิชิตคะแนน", "ทำจิตอาสาต่าง ๆ ทั้งในโรงเรียนและนอกโรงเรียน เช่น ทำความสะอาดห้องเรียน, เก็บขยะ, ช่วยครูถือของ ฯลฯ นักเรียนที่ต้องการเพิ่มคะแนนความประพฤติสามารถอัพโหลดรูปภาพที่ทำจิตอาสาของตนเองลงใน App Dschool ของโรงเรียนได้เลย!", "fa-trophy", ["จิตอาสา", "คะแนน"], "01");
-                this.addPolicy("สนามล่าฝัน", "จะสร้างเพจเด็ก ศสว. มีความรู้ มีการโพสต์เกร็ดความรู้ ชีทสรุป ประกาศการสอบแข่งขันวิชาการเช่น สอวน สวช และแจ้งกิจกรรมนอกโรงเรียนต่าง ๆ เพื่อกระจายข่าวให้เด็กในโรงเรียนมากขึ้น", "fa-rocket", ["ความรู้", "ข่าวสาร"], "02");
-                this.addPolicy("ปล่อยของลองวิชา", "กิจกรรมให้นักเรียนแข่งขันสรุปเนื้อหารายวิชาที่ตนเองกำลังเรียนอยู่แบ่งเป็นชั้นปี ผู้ชนะจะได้รับเกียรติบัตรและของรางวัลเล็ก ๆ น้อย ๆ พร้อมทั้งได้นำสรุปนี้ไปเผยแพร่เพื่อเป็นประโยชน์ให้แก่ผู้อื่น", "fa-book-open", ["การศึกษา", "การแข่งขัน"], "03");
-                this.addPolicy("Open Stage", "จัดกิจกรรมผ่อนคลายให้นักเรียน 1 ครั้งต่อ 1 ภาคเรียนเพื่อให้นักเรียนได้โชว์ศักยภาพของตนเองออกมาอย่างเต็มที่ทั้งด้านเกม เต้น ร้องเพลง ดนตรี และอื่น ๆ", "fa-microphone-lines", ["ความสามารถพิเศษ", "การแสดงออก"], "04");
-                this.addPolicy("Wrap It Up", "รวบรวมกระดาษที่ใช้แล้วจากนักเรียนและคณะครูมาใช้ห่อผ้าอนามัย โดยจะมีจุดให้บริการที่ห้องน้ำหญิงกลางโรงเรียนและห้องน้ำหญิงทุกอาคาร", "fa-recycle", ["สิ่งแวดล้อม", "สุขอนามัย"], "05");
-                this.addPolicy("เรื่องนี้ต้องถึงสภา!", "QR code สำหรับร้องเรียนทุกข์หรือปัญหาต่าง ๆ ในโรงเรียนเพื่อที่สภาจะนำไปปรับปรุงและพัฒนา รับฟังทุกเสียงของนักเรียน", "fa-bullhorn", ["รับฟังปัญหา", "พัฒนา"], "06");
-                this.addPolicy("ตื่นมา Say", "เสริมสร้างการใช้ภาษาที่สองและสามในตอนเช้า เพื่อพัฒนาทักษะทางภาษาและสร้างความมั่นใจในการสื่อสาร", "fa-language", ["ภาษา", "การสื่อสาร"], "07");
-                this.addPolicy("จุดช่วยทิ้ง", "เพิ่มถุงขยะบริเวณที่ไม่มีถังขยะ เพื่อลดการทิ้งขยะที่ไม่ถูกที่ ช่วยให้โรงเรียนสะอาดและน่าอยู่มากขึ้น", "fa-trash-can", ["สิ่งแวดล้อม", "ความสะอาด"], "08");
-                this.addPolicy("ห้องน้ำหอม", "จัดการกลิ่นไม่พึงประสงค์ของห้องน้ำตามอาคาร เพื่อสุขอนามัยที่ดีและความสบายใจของผู้เข้าใช้", "fa-spray-can-sparkles", ["สุขอนามัย", "สิ่งอำนวยความสะดวก"], "09");
-                this.addPolicy("Dance Battle", "เพิ่มการแข่งขัน Cover Dance ในงานการแข่งขันกีฬาภายใน", "fa-music", ["Cover Dance", "กีฬาภายใน"], "10");
-                this.addPolicy("จัดหนักวาทศิลป์", "มีการแข่งขันโต้วาทีในงานต่าง ๆ ของโรงเรียน เช่น วันภาษาไทย วันวิทยาศาสตร์ กีฬาสีภายใน", "fa-comments", ["โต้วาที", "การแสดงออก"], "11");
+                // ด้านความดี
+                this.addPolicy("ด้านความดี", "การทำจิตอาสาเก็บคะแนน", "ทำจิตอาสาต่าง ๆ ทั้งในโรงเรียนและนอกโรงเรียน เช่น ทำความสะอาดห้องเรียน, เก็บขยะ, ช่วยครูถือของ ฯลฯ นักเรียนที่ต้องการเพิ่มคะแนนความประพฤติสามารถอัปโหลดรูปภาพที่ทำจิตอาสาของตนเองลงใน App Dschool ของโรงเรียนได้เลย !", "fa-hand-holding-heart", ["จิตอาสา", "คะแนน"], "01");
+
+                // ด้านความรู้
+                this.addPolicy("ด้านความรู้", "สนามล่าฝัน", "จะสร้างเพจเด็ก ศสว. มีความรู้ มีการโพสต์เกร็ดความรู้ ชีทสรุป ประกาศการแข่งขันวิชาการ เช่น สอวน. สวช. และแจ้งกิจกรรมนอกโรงเรียนต่าง ๆ ทั้งกีฬา ภาษา หรืออื่น ๆ เพื่อกระจายข่าวให้เด็กในโรงเรียนมากขึ้น", "fa-rocket", ["ความรู้", "ข่าวสาร"], "02");
+                this.addPolicy("ด้านความรู้", "ปล่อยของลองวิชา", "ในวันที่มีกิจกรรมสำคัญของแต่ละรายวิชา เช่น วันภาษาไทย วันวิทยาศาสตร์ วันทานาบาตะ ฯลฯ เราจะมีกิจกรรมให้นักเรียนแข่งขันสรุปเนื้อหารายวิชาที่ตนเองกำลังเรียนอยู่แบ่งเป็นชั้นปี โดยเน้นความสวยงามและเนื้อหาที่ครบถ้วน ผู้ชนะจะได้รับเกียรติบัตรและของรางวัลเล็ก ๆ น้อย ๆ พร้อมทั้งได้นำสรุปนี้ไปเผยแพร่เพื่อเป็นประโยชน์ให้แก่ผู้อื่นในอนาคตได้อีกด้วย", "fa-book-open", ["การศึกษา", "การแข่งขัน"], "03");
+
+                // ด้านความสุข
+                this.addPolicy("ด้านความสุข", "เหนือกว่านิยาม", "เราไม่ได้มองหาแค่คนที่หน้าตาดี แต่เรามองหา “ความสมบูรณ์แบบที่แตกต่าง” ดังนั้นจึงมีการประกวดดาว LGBTQ+ เพื่อให้ทุกคนก้าวข้ามขีดจำกัดของตัวเองและใช้ความเป็นตัวเองอย่างเต็มที่", "fa-star", ["LGBTQ+", "ความเท่าเทียม"], "04");
+                this.addPolicy("ด้านความสุข", "Open Stage", "จัดกิจกรรมผ่อนคลายให้นักเรียน 1 ครั้งต่อ 1 ภาคเรียนเพื่อให้นักเรียนได้โชว์ศักยภาพของตนเองออกมาอย่างเต็มที่ทั้งด้าน เต้น ร้องเพลง ดนตรี กีฬาและอื่น ๆ เพื่อสนับสนุนให้นักเรียนกล้าแสดงออกอย่างเต็มที่", "fa-microphone-lines", ["ความสามารถพิเศษ", "การแสดงออก"], "05");
+                this.addPolicy("ด้านความสุข", "Dance Battle", "เพิ่มการแข่งขัน Cover Dance ในงานการแข่งขันกีฬาภายใน", "fa-music", ["Cover Dance", "กีฬาภายใน"], "06");
+                this.addPolicy("ด้านความสุข", "จัดหนักวาทศิลป์", "มีการแข่งขันโต้วาทีในงานต่าง ๆ ของโรงเรียน เช่น วันภาษาไทย วันวิทยาศาสตร์ กีฬาสีภายใน", "fa-comments", ["โต้วาที", "การแสดงออก"], "07");
+
+                // นโยบายอื่น ๆ
+                this.addPolicy("นโยบายอื่น ๆ", "Wrap It Up ห่อใบมง 0 บาท", "พวกเราจะรวบรวมกระดาษที่ใช้แล้วจากนักเรียนและคุณครูมาใช้ห่อผ้าอนามัย โดยจะมีกระดาษห่อผ้าอนามัยที่ห้องน้ำหญิงกลางโรงเรียนและห้องน้ำหญิงทุกอาคาร", "fa-recycle", ["สิ่งแวดล้อม", "สุขอนามัย"], "08");
+                this.addPolicy("นโยบายอื่น ๆ", "เรื่องนี้ต้องถึงสภา!", "เราจะมี QR code กรอกเรื่องเรียนทุกข์หรือปัญหาต่าง ๆ ในโรงเรียนเพื่อที่สภาจะนำไปปรับปรุงและพัฒนา", "fa-bullhorn", ["รับฟังปัญหา", "พัฒนา"], "09");
+                this.addPolicy("นโยบายอื่น ๆ", "ตื่นมา Say", "เสริมสร้างการใช้ภาษาที่สองและสามในตอนเช้า", "fa-language", ["ภาษา", "การสื่อสาร"], "10");
+                this.addPolicy("นโยบายอื่น ๆ", "จุดช่วยทิ้ง", "มีถังขยะเพิ่มบริเวณที่ไม่มีถังขยะ เพื่อลดการทิ้งขยะที่ไม่ถูกที่", "fa-trash-can", ["สิ่งแวดล้อม", "ความสะอาด"], "11");
+                this.addPolicy("นโยบายอื่น ๆ", "ห้องน้ำที่ไม่ต้องกลั้นหายใจ", "ดับกลิ่นไม่พึงประสงค์ของห้องน้ำตามอาคาร", "fa-spray-can-sparkles", ["สุขอนามัย", "สิ่งอำนวยความสะดวก"], "12");
             }
 
             // Render policies
@@ -235,41 +254,76 @@
                 const policyList = document.getElementById('policyList');
                 if (!policyList) return;
 
-                // Create container for the grid
-                let html = '<div class="policy-list-new" style="margin-top:2rem;">';
+                const categories = [
+                    { id: "ด้านความดี", icon: "fa-heart", color: "var(--primary-blue)" },
+                    { id: "ด้านความรู้", icon: "fa-book-open", color: "var(--accent-gold)" },
+                    { id: "ด้านความสุข", icon: "fa-smile", color: "var(--accent-pink)" },
+                    { id: "นโยบายอื่น ๆ", icon: "fa-layer-group", color: "var(--text-light)" }
+                ];
 
-                this.policies.forEach((policy, index) => {
-                    // Update number to ensure it is 2 digits 01, 02...
-                    const displayNum = String(index + 1).padStart(2, '0');
+                let html = '';
+
+                categories.forEach(cat => {
+                    const catPolicies = this.policies.filter(p => p.category === cat.id);
+                    if (catPolicies.length === 0) return;
 
                     html += `
-                        <div class="policy-card-new reveal active">
-                            <div class="policy-icon-large">
-                                <i class="fa-solid ${policy.icon}"></i>
-                                <div class="icon-glow"></div>
+                        <div class="policy-category-section" style="margin-bottom: 4rem;">
+                            <div class="category-header reveal active" style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: ${cat.color}; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    <i class="fa-solid ${cat.icon}"></i>
+                                </div>
+                                <h2 style="font-size: 2rem; font-weight: 700; color: var(--white); margin: 0;">${cat.id}</h2>
                             </div>
-                            <div class="policy-number">${displayNum}</div>
-                            <h3>${policy.title}</h3>
-                            <p>${policy.description}</p>
-                            <div class="policy-tags">
-                                ${policy.tags.map(tag => `
-                                    <span class="tag"><i class="fa-solid fa-check"></i> ${tag}</span>
-                                `).join('')}
+                            
+                            <div class="policy-list-new">
+                    `;
+
+                    catPolicies.forEach((policy) => {
+                        html += `
+                            <div class="policy-card-new reveal active">
+                                <div class="policy-icon-large">
+                                    <i class="fa-solid ${policy.icon}"></i>
+                                    <div class="icon-glow"></div>
+                                </div>
+                                <div class="policy-number">${policy.number}</div>
+                                <h3>${policy.title}</h3>
+                                <p>${policy.description}</p>
+                                <div class="policy-tags">
+                                    ${policy.tags.map(tag => `
+                                        <span class="tag"><i class="fa-solid fa-check"></i> ${tag}</span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    html += `
                             </div>
                         </div>
                     `;
                 });
 
-                html += '</div>'; // Close grid container
                 policyList.innerHTML = html;
 
                 // Trigger scroll animation check if available
-                if (window.handleScroll) window.handleScroll();
+                if (typeof window.handleScroll === 'function') {
+                    window.handleScroll();
+                }
             }
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function () {
+            // Force removal of loading state as backup in case main script fails
+            setTimeout(() => {
+                if (document.body.classList.contains('page-loading')) {
+                    document.body.classList.remove('page-loading');
+                    document.body.classList.add('page-loaded');
+                    document.body.style.opacity = '1';
+                }
+            }, 1000);
+
             new PolicyManager();
         });
     </script>
