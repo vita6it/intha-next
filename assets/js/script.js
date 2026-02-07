@@ -191,63 +191,92 @@ function initHeaderEffects() {
 // ===================================================
 // ACTIVE NAVIGATION STATE
 // ===================================================
+// ===================================================
+// ACTIVE NAVIGATION STATE
+// ===================================================
+// ===================================================
+// ACTIVE NAVIGATION STATE
+// ===================================================
 function initActiveNavigation() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
 
     if (sections.length === 0 || navLinks.length === 0) return;
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -70% 0px',
-        threshold: 0
-    };
-
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-
-                // Remove active from all links
-                navLinks.forEach(link => {
-                    link.classList.remove('nav-active');
-                });
-
-                // Add active to matching links
-                navLinks.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && (href === `#${id}` || href === `index.html#${id}` || href.endsWith(`#${id}`))) {
-                        link.classList.add('nav-active');
-                    }
-                });
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    // Set initial active state based on URL hash or first section
-    const hash = window.location.hash;
-    if (hash) {
+    // Helper to set active class
+    const setActive = (id) => {
         navLinks.forEach(link => {
+            link.classList.remove('nav-active');
             const href = link.getAttribute('href');
-            if (href && href.endsWith(hash)) {
-                link.classList.add('nav-active');
-            }
-        });
-    } else {
-        // Check if on members page
-        if (window.location.pathname.includes('members')) {
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === 'members.html') {
+            // Check for exact match or anchor match
+            if (href) {
+                // Determine if this link matches the current section
+                let isMatch = false;
+
+                if (href === id || href === `#${id}` || href.endsWith(`#${id}`)) {
+                    isMatch = true;
+                } else if (id === 'home' && (href === '/' || href === '/#home' || href === '#home')) {
+                    isMatch = true;
+                } else if (id === 'gallery-preview' && (href === 'gallery' || href.includes('gallery'))) {
+                    // Special case: map #gallery-preview section to /gallery link
+                    isMatch = true;
+                }
+
+                if (isMatch) {
                     link.classList.add('nav-active');
                 }
-            });
+            }
+        });
+    };
+
+    // Scroll handler
+    const onScroll = () => {
+        const headerOffset = 100; // Height of header + adjustment
+        const scrollPosition = window.scrollY + headerOffset;
+        let currentId = '';
+
+        // Check sections
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentId = sectionId;
+            }
+        });
+
+        // Special case: Bottom of page -> Contact
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+            currentId = 'contact';
         }
+
+        // Special case: Top of page -> Home
+        if (window.scrollY < 50) {
+            currentId = 'home';
+        }
+
+        if (currentId) {
+            setActive(currentId);
+        }
+    };
+
+    // initial check
+    // Check if on specific page first
+    const path = window.location.pathname;
+    if (path.includes('members')) {
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes('members')) link.classList.add('nav-active');
+        });
+    } else if (path.includes('gallery')) {
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes('gallery')) link.classList.add('nav-active');
+        });
+    } else {
+        // Only run scroll spy on index page or when page has hashes
+        window.addEventListener('scroll', onScroll);
+        // Run once on load
+        onScroll();
     }
 }
 
