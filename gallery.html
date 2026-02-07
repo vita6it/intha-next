@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#2563EB">
+
+    <title>Gallery | Intha - NEXT</title>
+
+    <meta name="description"
+        content="แกลเลอรี่ภาพกิจกรรมพรรค Intha - NEXT พรรคสภานักเรียนเบอร์ 1 เพื่อการเปลี่ยนแปลงที่ทันสมัย">
+
+    <meta name="keywords" content="Intha NEXT, Gallery, แกลเลอรี่, รูปภาพ, กิจกรรม">
+
+    <meta name="author" content="Intha - NEXT Party">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gallery | Intha - NEXT">
+    <meta property="og:description" content="แกลเลอรี่ภาพกิจกรรมพรรค Intha - NEXT">
+    <meta property="og:image" content="assets/images/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232563EB'/%3E%3Cstop offset='1' stop-color='%231E3A8A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' text-anchor='middle' fill='white' font-family='Inter,Arial,sans-serif' font-size='26'%3EN%3C/text%3E%3C/svg%3E">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* Gallery Page Specific Styles */
+        .gallery-hero {
+            padding: 140px 0 60px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -25%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .gallery-hero .section-header {
+            text-align: center;
+        }
+
+        /* Day Tabs */
+        .day-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+
+        .day-tab {
+            padding: 0.9rem 2rem;
+            background: var(--white);
+            border: 2px solid rgba(37, 99, 235, 0.15);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .day-tab:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .day-tab.active {
+            background: var(--primary-gradient);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+        }
+
+        .day-tab .count {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .day-tab:not(.active) .count {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-blue);
+        }
+
+        /* Gallery Grid */
+        .gallery-section {
+            padding: 4rem 0 6rem;
+            background: var(--white);
+            min-height: 50vh;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            background: var(--bg-subtle);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item .overlay i {
+            font-size: 1.5rem;
+        }
+
+        /* Loading State */
+        .gallery-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            gap: 1.5rem;
+        }
+
+        .gallery-loading .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(37, 99, 235, 0.1);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .gallery-loading p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Empty State */
+        .gallery-empty {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .gallery-empty i {
+            font-size: 4rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-empty h3 {
+            color: var(--text-medium);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        .lightbox-bottom {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .lightbox-counter {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .lightbox-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .lightbox-download:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .lightbox-download i {
+            font-size: 0.85rem;
+        }
+
+        /* Day Info Badge */
+        .day-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .day-info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.03) 100%);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            color: var(--text-medium);
+        }
+
+        .day-info-badge i {
+            color: var(--primary-blue);
+        }
+
+        .day-info-badge strong {
+            color: var(--primary-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-hero {
+                padding: 120px 0 40px;
+            }
+
+            .day-tabs {
+                gap: 0.75rem;
+            }
+
+            .day-tab {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.85rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .gallery-item {
+                border-radius: var(--radius-md);
+            }
+
+            .lightbox-nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="page-loading">
+
+    <!-- Skip Link for Accessibility -->
+    <a href="#gallery" class="skip-link">ข้ามไปยังแกลเลอรี่</a>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="assets/images/logo.png" alt="Intha - NEXT Logo" class="logo-mark" loading="lazy">
+                <span class="logo-text">Intha <span>- NEXT</span></span>
+            </a>
+            <nav class="nav-desktop">
+                <ul class="nav-links">
+                    <li><a href="/#home">หน้าแรก</a></li>
+                    <li><a href="/#about">วิสัยทัศน์</a></li>
+                    <li><a href="/#policies">นโยบาย</a></li>
+                    <li><a href="members">สมาชิกพรรค</a></li>
+                    <li><a href="gallery" class="nav-active">แกลเลอรี่</a></li>
+                    <li><a href="/#contact">ติดต่อเรา</a></li>
+                </ul>
+            </nav>
+
+            <!-- Toggle Tab Menu Button -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <ul class="mobile-nav-links">
+                    <li><a href="/#home" class="mobile-link">หน้าแรก</a></li>
+                    <li><a href="/#about" class="mobile-link">วิสัยทัศน์</a></li>
+                    <li><a href="/#policies" class="mobile-link">นโยบาย</a></li>
+                    <li><a href="members" class="mobile-link">สมาชิกพรรค</a></li>
+                    <li><a href="gallery" class="mobile-link nav-active">แกลเลอรี่</a></li>
+                    <li><a href="/#contact" class="mobile-link">ติดต่อเรา</a></li>
+                </ul>
+                <a href="/#policies" class="btn btn-primary mobile-cta">เลือกเบอร์ 1</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Backdrop -->
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Photo Gallery</span>
+                <h1 class="section-title">แกลเลอรี่ภาพกิจกรรม <span style="color:var(--primary-blue)">Intha -
+                        NEXT</span></h1>
+                <p
+                    style="color:var(--text-light); margin-top:1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    รวมภาพบรรยากาศและความทรงจำอันสวยงามจากกิจกรรมต่างๆ ของพรรค Intha - NEXT
+                </p>
+            </div>
+
+            <!-- Day Tabs -->
+            <div class="day-tabs" id="dayTabs">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Content -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <!-- Day Info -->
+            <div class="day-info" id="dayInfo">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="galleryContainer">
+                <div class="gallery-loading" id="galleryLoading">
+                    <div class="spinner"></div>
+                    <p>กำลังโหลดรูปภาพ...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <img src="" alt="Gallery Image" id="lightboxImage" referrerpolicy="no-referrer">
+            <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-bottom">
+                <div class="lightbox-counter" id="lightboxCounter"></div>
+                <a href="" class="lightbox-download" id="lightboxDownload" target="_blank" download
+                    aria-label="Download">
+                    <i class="fa-solid fa-download"></i>
+                    <span>ดาวน์โหลด</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo">
+                        <span>Intha - NEXT</span>
+                    </a>
+                    <p class="footer-desc">
+                        พรรคของนักเรียนยุคใหม่ มุ่งมั่นพัฒนาโรงเรียนด้วยพลังสร้างสรรค์และความตั้งใจจริง
+                    </p>
+                </div>
+                <div class="footer-contact">
+                    <h4>ติดต่อเรา</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/intha_next/" target="_blank" class="social-btn"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@intha.next" target="_blank" class="social-btn"><i
+                                class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Developer : @vita6it</p>
+                <p>&copy; 2026 Intha - NEXT Party. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Gallery Page JavaScript
+        const GALLERY_API = 'https://script.google.com/macros/s/AKfycbzp031rDZ1HWkb2gxYI-Q5Sgflyb6CnpxAgzyNchaOu7CIuCPVoVYiJ4hSSE86V1g/exec';
+
+        let galleryData = null;
+        let currentDay = 'Day1';
+        let currentImages = [];
+        let currentImageIndex = 0;
+
+        // Day labels in Thai
+        const dayLabels = {
+            'Day1': '30/01/69',
+            'Day2': '02/02/69',
+            'Day3': '05/02/69',
+            'Day4': '06/02/69'
+        };
+
+        // Convert Google Drive URL to direct image URL
+        function convertToDirectUrl(url) {
+            if (!url) return url;
+
+            // Debug log
+            console.log('Original URL:', url);
+
+            // If it's already a googleusercontent URL, return as is
+            if (url.includes('googleusercontent.com')) {
+                return url;
+            }
+
+            // Extract file ID from various formats
+            let fileId = null;
+
+            // Try different patterns
+            let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match) fileId = match[1];
+
+            if (!fileId) {
+                match = url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (match) fileId = match[1];
+            }
+
+            // If we found a file ID, use thumbnail URL
+            if (fileId) {
+                const newUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w800`;
+                console.log('Converted URL:', newUrl);
+                return newUrl;
+            }
+
+            console.log('No conversion, returning original');
+            return url;
+        }
+
+        // Fetch gallery data
+        async function fetchGalleryData() {
+            try {
+                const response = await fetch(GALLERY_API);
+                galleryData = await response.json();
+                initGallery();
+            } catch (error) {
+                console.error('Error fetching gallery data:', error);
+                showError();
+            }
+        }
+
+        // Initialize gallery
+        function initGallery() {
+            if (!galleryData) return;
+
+            // Render day tabs
+            const tabsContainer = document.getElementById('dayTabs');
+            tabsContainer.innerHTML = '';
+
+            const days = ['Day1', 'Day2', 'Day3', 'Day4'];
+            days.forEach(day => {
+                if (galleryData[day]) {
+                    const tab = document.createElement('button');
+                    tab.className = `day-tab ${day === currentDay ? 'active' : ''}`;
+                    tab.dataset.day = day;
+                    tab.innerHTML = `
+                        <i class="fa-solid fa-calendar-day"></i>
+                        ${dayLabels[day]}
+                        <span class="count">${galleryData[day].count}</span>
+                    `;
+                    tab.addEventListener('click', () => switchDay(day));
+                    tabsContainer.appendChild(tab);
+                }
+            });
+
+            // Render current day's images
+            renderGallery(currentDay);
+        }
+
+        // Switch day
+        function switchDay(day) {
+            currentDay = day;
+
+            // Update active tab
+            document.querySelectorAll('.day-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.day === day);
+            });
+
+            // Render new gallery
+            renderGallery(day);
+        }
+
+        // Render gallery grid
+        function renderGallery(day) {
+            const container = document.getElementById('galleryContainer');
+            const dayInfo = document.getElementById('dayInfo');
+
+            if (!galleryData[day]) {
+                container.innerHTML = `
+                    <div class="gallery-empty">
+                        <i class="fa-solid fa-image"></i>
+                        <h3>ไม่พบรูปภาพ</h3>
+                        <p>ยังไม่มีรูปภาพสำหรับ${dayLabels[day]}</p>
+                    </div>
+                `;
+                dayInfo.innerHTML = '';
+                return;
+            }
+
+            currentImages = galleryData[day].images;
+
+            // Update day info
+            dayInfo.innerHTML = `
+                <div class="day-info-badge">
+                    <i class="fa-solid fa-images"></i>
+                    <span>กำลังแสดงรูปภาพ <strong>${dayLabels[day]}</strong></span>
+                    <span>|</span>
+                    <span><strong>${currentImages.length}</strong> รูป</span>
+                </div>
+            `;
+
+            // Render gallery grid
+            container.innerHTML = `<div class="gallery-grid" id="galleryGrid"></div>`;
+            const grid = document.getElementById('galleryGrid');
+
+            currentImages.forEach((image, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                // Use converted URL like lightbox does
+                const imgUrl = convertToDirectUrl(image.url);
+                console.log('Rendering image:', index, imgUrl);
+
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                img.alt = image.name || 'Gallery image';
+                img.referrerPolicy = 'no-referrer';
+                img.onerror = function () {
+                    console.log('Image failed to load:', imgUrl);
+                    this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2216%22%3EImage not available%3C/text%3E%3C/svg%3E';
+                };
+                img.onload = function () {
+                    console.log('Image loaded successfully:', imgUrl);
+                };
+
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+                overlay.innerHTML = '<i class="fa-solid fa-expand"></i>';
+
+                item.appendChild(img);
+                item.appendChild(overlay);
+                item.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(item);
+            });
+        }
+
+        // Show error
+        function showError() {
+            const container = document.getElementById('galleryContainer');
+            container.innerHTML = `
+                <div class="gallery-empty">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    <h3>เกิดข้อผิดพลาด</h3>
+                    <p>ไม่สามารถโหลดรูปภาพได้ กรุณาลองใหม่อีกครั้ง</p>
+                    <button class="btn btn-primary" onclick="fetchGalleryData()" style="margin-top: 1rem;">
+                        <i class="fa-solid fa-refresh"></i> ลองใหม่
+                    </button>
+                </div>
+            `;
+        }
+
+        // Lightbox functions
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const image = currentImages[currentImageIndex];
+            const imgUrl = convertToDirectUrl(image.url);
+            const lightboxImg = document.getElementById('lightboxImage');
+            lightboxImg.src = imgUrl;
+            lightboxImg.referrerPolicy = 'no-referrer';
+            document.getElementById('lightboxCounter').textContent =
+                `${currentImageIndex + 1} / ${currentImages.length}`;
+
+            // Update download link - extract file ID and create download URL
+            const downloadLink = document.getElementById('lightboxDownload');
+            let fileId = null;
+            let match = image.url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match) fileId = match[1];
+            if (!fileId) {
+                match = image.url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (match) fileId = match[1];
+            }
+            if (fileId) {
+                downloadLink.href = `https://drive.google.com/uc?export=download&id=${fileId}`;
+            } else {
+                downloadLink.href = image.url;
+            }
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+            updateLightbox();
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+            updateLightbox();
+        }
+
+        // Event listeners for lightbox
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', prevImage);
+        document.getElementById('lightboxNext').addEventListener('click', nextImage);
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchGalleryData();
+        });
+    </script>
+
+</body>
+
+</html>
